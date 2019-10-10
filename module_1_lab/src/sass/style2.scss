@@ -1,0 +1,41 @@
+@import "_mixins";
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+$baseColor: blue;
+.base {
+    @include init-box;
+    @include rounded-corners-all;
+    background-color: $baseColor;
+}
+
+.important {
+    @include init-box;
+    @include rounded-corners-all;
+    background-color: darken($baseColor, 30%);
+}
+
+.warning {
+    @include init-box;
+    @include rounded-corners-all;
+    background-color: cyan;
+}
+
+.main-font {
+    font-family: serif;
+    padding-top: 10px;
+}
+
+.sec-font {
+    font-family: serif;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.shadow {
+    @include init-box;
+    @include rounded-corners-all;
+    box-shadow: 5px 10px 8px rgb(58, 58, 58);
+}

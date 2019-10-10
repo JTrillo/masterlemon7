@@ -1,0 +1,22 @@
+@import "_mixins";
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 32vh;
+    margin-bottom: 0.5vh;
+}
+
+.container-1 {
+    $color: red;
+    @include generate-row($color);
+}
+
+.container-2 {
+    $color: green;
+    @include generate-row($color);
+}
+
+.container-3 {
+    $color: blue;
+    @include generate-row($color);
+}

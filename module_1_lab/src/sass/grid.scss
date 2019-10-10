@@ -1,0 +1,35 @@
+@import "_layout";
+body {
+    margin: 0;
+    height: 100vh;
+}
+
+.container {
+    .links {
+        background-color: pink;
+    }
+    .contents {
+        .a {
+            background-color: yellow;
+        }
+        .b {
+            background-color: blue;
+        }
+    }
+}
+
+@media screen and (min-width: 75rem) {
+    @include extra-large-layout;
+}
+
+@media screen and (min-width: 62rem) and (max-width:74.99rem) {
+    @include large-layout;
+}
+
+@media screen and (min-width: 48rem) and (max-width: 61.99rem) {
+    @include medium-layout;
+}
+
+@media screen and (max-width: 47.99rem) {
+    @include small-layout;
+}

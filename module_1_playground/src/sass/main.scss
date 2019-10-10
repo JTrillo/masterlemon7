@@ -1,0 +1,53 @@
+@import "init";
+@import "layout";
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-display {
+    flex-grow: 1;
+}
+
+.header {
+    grid-area: header;
+    background-color: pink;
+}
+
+.regular {
+    grid-area: regular;
+    background-color: blue;
+}
+
+.articles {
+    grid-area: articles;
+    background-color: cyan;
+}
+
+.info {
+    grid-area: info;
+    background-color: green;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: yellow;
+}
+
+@media screen and (min-width: 75rem) {
+    .main-content {
+        @include full-resolution;
+    }
+}
+
+@media screen and (max-width: 74.9rem) and (min-width: 48rem) {
+    .main-content {
+        @include medium-resolution;
+    }
+}
+
+@media screen and (max-width: 47.9rem) {
+    @include small-resolution;
+}

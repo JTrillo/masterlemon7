@@ -1,0 +1,20 @@
+{
+    "name": "module_1_lab",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "sass-1": "parcel src/sass-1.html",
+        "sass-2": "parcel src/sass-2.html",
+        "flexbox": "parcel src/flexbox.html",
+        "grid": "parcel src/grid.html",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "parcel": "^1.12.3",
+        "sass": "^1.23.0"
+    }
+}

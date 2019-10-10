@@ -1,0 +1,43 @@
+//Exercise 1
+@mixin generate-row($color: red) {
+    @for $i from 1 through 4 {
+        .darken-#{$i} {
+            @include items-init;
+            background-color: darken($color, 10% * $i);
+        }
+        .lighten-#{$i} {
+            @include items-init;
+            background-color: lighten($color, 10% * $i);
+        }
+    }
+    .base {
+        @include items-init;
+        background-color: $color;
+    }
+}
+
+@mixin items-init {
+    height: 100%;
+    flex-grow: 1;
+    margin-right: 1vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+//Exercise 2
+@mixin init-box {
+    width: 100px;
+    height: 50px;
+    border: grey 1px solid;
+    padding-top: 10px;
+    padding-left: 15px;
+    font-family: cursive;
+}
+
+@mixin rounded-corners-all($size: 5px) {
+    border-radius: $size;
+    -moz-border-radius: $size;
+    -webkit-border-radius: $size;
+}

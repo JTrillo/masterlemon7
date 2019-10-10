@@ -1,0 +1,25 @@
+body {
+    background-color: darkgrey;
+    height: 2000px;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.blue-box {
+    background: lightskyblue;
+    float: left;
+}
+
+.green-box {
+    background: lightgreen;
+    float: left;
+}
+
+h1 {
+    clear: both;
+}

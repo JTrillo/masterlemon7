@@ -1,0 +1,1 @@
+All code stored in this folder was used just to learn during this module. Is not an application or an exercise
