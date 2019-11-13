@@ -2,8 +2,8 @@
 
 // clone function
 function clone(source) {
-    let theClone = {}
-    for (i in source) {
+    let theClone = {};
+    for (let i in source) {
         theClone[i] = source[i];
     }
     return theClone;
@@ -12,7 +12,7 @@ function clone(source) {
 // merge function
 function merge(a, b) {
     let theMerge = clone(b);
-    for (i in a) {
+    for (let i in a) {
         theMerge[i] = a[i];
     }
     return theMerge;
