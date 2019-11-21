@@ -65,3 +65,64 @@ console.log(_.intersection(frontend, backend)); // ['JavaScript']
 var elements = [7, -1, 5, 3, 4, 6, 3, 4, 7, 1];
 console.log(_.uniq(elements)); // [7, -1, 5, 3, 4, 6, 1]
 console.log(_.uniqBy(elements, Math.abs)); // [7, -1, 5, 3, 4, 6]
+
+//API Collection
+
+//partition (separa los elementos del array según el resultado booleano de ejecutar la función especificada)
+const numbers2 = [1, 7, 2, 5, 3, 9, 1, 6];
+var greaterThan5 = (num) => num > 5;
+console.log(_.partition(numbers2, greaterThan5)); // [[7, 9, 6], [1, 2, 5, 3, 1]]
+
+//reject (opuesto de filter, devuelve todos los elementos que no cumplen con el predicado)
+console.log(_.reject(numbers2, greaterThan5)); // [1, 2, 5, 3, 1]
+
+// countBy (crea un objeto cuya clave es el resultado de aplicar la función especificada y cuyo valor es el número de elementos que devuelven el mismo resultado)
+const elements2 = ['Matt', 'Jane', 'Eva', 'Tristan', 'Jax'];
+console.log(_.countBy(elements2, 'length')); // { '3': 2, '4': 2, '7': 1 }
+
+// sortBy (ordena en modo ascendente los elementos de un array según la función que pasemos como parámetro. En caso de objeto se puede ordenar pasándole la propiedad)
+const users = [
+    { name: 'Mika', age: 40, active: false },
+    { name: 'John', age: 34, active: true },
+    { name: 'John', age: 21, active: false },
+    { name: 'Fred', age: 48, active: true },
+    { name: 'Paul', age: 36, active: false },
+];
+console.log(_.sortBy(users, 'name'));
+// [ { name: 'Fred', age: 48, active: true }, { name: 'John', age: 34, active: true }, { name: 'John', age: 21, active: false }, { name: 'Mika', age: 40, active: false }, { name: 'Paul', age: 36, active: false } ]
+console.log(_.sortBy(users, ['age', 'name']));
+// [ { name: 'John', age: 21, active: false }, { name: 'John', age: 34, active: true }, { name: 'Paul', age: 36, active: false }, { name: 'Mika', age: 40, active: false }, { name: 'Fred', age: 48, active: true } ]
+
+// API Object
+
+//get (coge el valor de una clave de un objeto)
+const user = { name: 'Mika', age: 40, active: false };
+console.log(_.get(user, 'age')); // 40
+console.log(_.get(user, 'surname', "Doe")); // Esto sería como un get or. Salida --> 'Doe'
+
+//has (nos dice si un objeto tiene esa propiedad)
+console.log(_.has(user, 'age')); //true
+console.log(_.has(user, 'surname')); //false
+
+//set (cambia el valor de una clave de un objeto)
+console.log(_.set(user, 'age', 48)); // {name: "Mika", age: 48, active: false}
+
+//merge (añade al primer objeto variables que no tiene de los siguientes)
+const extra = { surname: "Doe" };
+console.log(_.merge(user, extra)); // {name: "Mika", age: 48, active: false, surname: "Doe"}
+
+// API Function
+
+//curry (permite currificar una función)
+const send = (sender, receiver, message) => `${sender} says to ${receiver}: ${message}`;
+const curriedSend = _.curry(send);
+const anaSaysTo = curriedSend("Ana");
+console.log(anaSaysTo("Pepe", "Hello!"));
+const pepeSaysTo = curriedSend("Pepe");
+console.log(pepeSaysTo("Ana", "How are you?"));
+const anaSaysToEva = curriedSend("Ana", "Eva");
+console.log(anaSaysToEva("Good morning"));
+
+//partial (permite crear una función parcial)
+const anaSaysToPepe = _.partial(send, "Ana", "Pepe");
+console.log(anaSaysToPepe("Good afternoon"));
