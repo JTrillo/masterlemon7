@@ -1,15 +1,20 @@
 {
-  "name": "module_2_lab",
-  "version": "1.0.0",
-  "description": "",
-  "main": "exercise1.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "typescript": "^3.6.4"
-  }
+    "name": "module_2_lab",
+    "version": "1.0.0",
+    "description": "",
+    "main": "exercise1.js",
+    "scripts": {
+        "ex1": "node exercise1.js",
+        "ex2": "node exercise2.js",
+        "ex3": "node exercise3.js",
+        "ex4": "node exercise4.js",
+        "ex4ts": "tsc exercise4ts.ts && node exercise4ts.js",
+        "ex5": "node exercise5.js"
+    },
+    "keywords": [],
+    "author": "Joaquín Trillo Escribano",
+    "license": "ISC",
+    "devDependencies": {
+        "typescript": "^3.7.2"
+    }
 }
