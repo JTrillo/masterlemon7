@@ -76,11 +76,11 @@ console.log(_.partition(numbers2, greaterThan5)); // [[7, 9, 6], [1, 2, 5, 3, 1]
 //reject (opuesto de filter, devuelve todos los elementos que no cumplen con el predicado)
 console.log(_.reject(numbers2, greaterThan5)); // [1, 2, 5, 3, 1]
 
-// countBy (crea un objeto cuya clave es el resultado de aplicar la función especificada y cuyo valor es el número de elementos que devuelven el mismo resultado)
+//countBy (crea un objeto cuya clave es el resultado de aplicar la función especificada y cuyo valor es el número de elementos que devuelven el mismo resultado)
 const elements2 = ['Matt', 'Jane', 'Eva', 'Tristan', 'Jax'];
 console.log(_.countBy(elements2, 'length')); // { '3': 2, '4': 2, '7': 1 }
 
-// sortBy (ordena en modo ascendente los elementos de un array según la función que pasemos como parámetro. En caso de objeto se puede ordenar pasándole la propiedad)
+//sortBy (ordena en modo ascendente los elementos de un array según la función que pasemos como parámetro. En caso de objeto se puede ordenar pasándole la propiedad)
 const users = [
     { name: 'Mika', age: 40, active: false },
     { name: 'John', age: 34, active: true },
@@ -123,6 +123,14 @@ console.log(pepeSaysTo("Ana", "How are you?"));
 const anaSaysToEva = curriedSend("Ana", "Eva");
 console.log(anaSaysToEva("Good morning"));
 
-//partial (permite crear una función parcial)
+//partial (permite crear una aplicación parcial)
 const anaSaysToPepe = _.partial(send, "Ana", "Pepe");
 console.log(anaSaysToPepe("Good afternoon"));
+
+//overEvery (agrupar múltiples predicados y decirnos si el argumento que le estamos pasando cumple todos los predicados)
+const isEven = (n) => n % 2 === 0;
+const isGreaterThan10 = (n) => n > 10;
+const checkNumber = (n) => _.isNumber(n) && isEven(n) && isGreaterThan10(n);
+const checkNumber2 = _.overEvery([_.isNumber, isEven, isGreaterThan10]);
+console.log(checkNumber(30), checkNumber(8));
+console.log(checkNumber2(12), checkNumber2(8));
