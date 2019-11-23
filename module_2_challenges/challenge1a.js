@@ -4,10 +4,8 @@ const aplanarArray = (input) => {
         if (Array.isArray(input[i])) {
             //Si el elemento es un array interno, hacemos una llamada recursiva a esta misma función
             let aux = aplanarArray(input[i]);
-            //Añadimos elemento a elemento del array parcialmente aplanado
-            for (let j in aux) {
-                arrayAplanado.push(aux[j]);
-            }
+            //Concatenamos lo que teníamos con lo que acabamos de recibir
+            arrayAplanado = [...arrayAplanado, ...aux];
         } else {
             arrayAplanado.push(input[i]);
         }

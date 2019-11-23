@@ -2,14 +2,14 @@ const expensiveFunction = () => {
     console.log("Una única llamada");
     return 3.1415;
 }
-const memoize = (func) => {
-    let aux = undefined;
+const memoize = (func:any) => {
+    let memory = undefined;
     return () => {
-        if (aux !== undefined) {
-            return aux;
+        if (memory !== undefined) {
+            return memory;
         } else {
-            aux = func();
-            return aux;
+            memory = func();
+            return memory;
         }
     }
 }

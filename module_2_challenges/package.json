@@ -1,12 +1,21 @@
 {
-  "name": "module_2_challenges",
-  "version": "1.0.0",
-  "description": "",
-  "main": "challenge1.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "name": "module_2_challenges",
+    "version": "1.0.0",
+    "description": "",
+    "main": "challenge1.js",
+    "scripts": {
+        "ch1a": "node challenge1a.js",
+        "ch1b": "tsc challenge1b.ts && node challenge1b.js",
+        "ch2": "node challenge2.js",
+        "ch3": "tsc challenge3.ts && node challenge3.js",
+        "ch4": "node challenge4.js",
+        "ch5a": "tsc challenge5a.ts && node challenge5a.js",
+        "ch5c": "tsc challenge5c.ts --lib es6,dom && node challenge5c.js"
+    },
+    "keywords": [],
+    "author": "Joaquín Trillo Escribano",
+    "license": "ISC",
+    "devDependencies": {
+        "typescript": "^3.7.2"
+    }
 }

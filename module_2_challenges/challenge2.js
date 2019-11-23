@@ -4,8 +4,13 @@ const deepGet = (object, ...properties) => {
     } else if (properties.length === 1) {
         return object[properties[0]];
     } else {
-        let [, ...tailProperties] = properties;
-        return deepGet(object[properties[0]], ...tailProperties);
+        if (object[properties[0]] !== undefined) {
+            let [, ...tailProperties] = properties;
+            return deepGet(object[properties[0]], ...tailProperties);
+        } else {
+            return undefined;
+        }
+
     }
 
 }
@@ -39,13 +44,15 @@ const myObject = {
     }
 };
 
-/*console.log(deepGet(myObject, "x")); // undefined
+console.log("TEST deepGet\r\n");
+console.log(deepGet(myObject, "x")); // undefined
 console.log(deepGet(myObject, "a")); // 1
 console.log(deepGet(myObject, "b")); // { c: null, d: {....}}
 console.log(deepGet(myObject, "b", "c")); // null
 console.log(deepGet(myObject, "b", "d", "f", "g")); // bingo
-console.log(deepGet(myObject)); // {a: 1, b: {...}}*/
+console.log(deepGet(myObject)); // {a: 1, b: {...}}
 
+console.log("\r\nTEST deepSet\r\n");
 const myObjectSet = {};
 
 deepSet(1, myObjectSet, "a", "b");
