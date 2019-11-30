@@ -63,3 +63,6 @@ typings/
 # parcel directories
 .cache/
 dist/
+
+# package-lock.json
+package-lock.json

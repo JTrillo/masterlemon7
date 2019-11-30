@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "es6", //a lo que transpila
+      "module": "es6", //los modulos que usa
+      "moduleResolution": "node", //para que use la misma resolucion de modules que tiene node
+      "declaration": false,
+      "noImplicitAny": false,
+      "jsx": "react", //le decimos que para los jsx utilice react
+      "sourceMap": true, //permite depurar typescript desde chrome
+      "noLib": false,
+      "suppressImplicitAnyIndexErrors": true,
+      "esModuleInterop": true
+    },
+    "compileOnSave": false,
+    "exclude": ["node_modules"]
+}
