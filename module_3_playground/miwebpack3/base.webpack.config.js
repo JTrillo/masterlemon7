@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //solo se usa en produccion, asi que lo importamos alli
 const webpack = require('webpack');
 const path = require('path');
 const basePath = __dirname;
@@ -26,9 +26,6 @@ module.exports = {
             },
         },
     },
-    output: {
-        filename: '[name].[chunkhash].js',
-    },
     module: {
         rules: [{
                 test: /\.tsx?$/,
@@ -51,32 +48,6 @@ module.exports = {
                 loader: 'babel-loader',
             },
             {
-                test: /\.scss$/,
-                exclude: /node_modules/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    //'css-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: {
-                                localIdentName: '[name]__[local]__[hash:base64:5]',
-                            },
-                        },
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            implementation: require('sass'),
-                        },
-                    },
-                ],
-            },
-            {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
-            },
-            {
                 test: /\.(png|jpg)$/,
                 exclude: /node_modules/,
                 loader: 'url-loader?limit=5000',
@@ -97,10 +68,9 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery',
         }),
-        new MiniCssExtractPlugin({
+        /*new MiniCssExtractPlugin({ //Solo se usa en produccion este plugin. Lo importamos solo alli
             filename: '[name].css',
             chunkFilename: '[id].css',
-        }),
+        }),*/
     ],
-    devtool: 'inline-source-map',
 };
