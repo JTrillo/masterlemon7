@@ -5,9 +5,9 @@ Pasos seguidos:
 npm init -y
 ```
 
-* Instalar webpack y webpack-cli
+* Instalar webpack, webpack-cli y el servidor de desarrollo de webpack
 ```
-npm i -D webpack webpack-cli
+npm i -D webpack webpack-cli webpack-dev-server
 ```
 
 * Instalar Babel
