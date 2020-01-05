@@ -1,28 +1,17 @@
-Pasos seguidos:
-
-* Inicializar proyecto node
+This node project has 4 script and with these you can:
+* Open Webpack development server
 ```
-npm init -y
+npm start
 ```
-
-* Instalar webpack, webpack-cli y el servidor de desarrollo de webpack
+* Build the app for development
 ```
-npm i -D webpack webpack-cli webpack-dev-server
+npm run build:dev
 ```
-
-* Instalar Babel
+* Build the app for production
 ```
-npm i -D @babel/cli @babel/core @babel/preset-env
+npm run build:prod
 ```
-
-* Crear el archivo de configuración de Babel ( ***./.babelrc*** ). Tiene que tener este contenido:
+* Build the app for performance improvement
 ```
-{
-  "presets": ["@babel/preset-env"]
-}
-```
-
-* Instalar el loader de Babel
-```
-npm i -D babel-loader
+npm run build:perf
 ```
