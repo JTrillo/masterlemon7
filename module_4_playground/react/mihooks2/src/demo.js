@@ -1,27 +1,32 @@
-import React from "react";
+import * as React from 'react';
 
-export const MyComponent = () => {
-  const [message, setMessage] = React.useState("initial message");
-  const [seconds, setSeconds] = React.useState(0);
+const setSatisfactionClass = level => {
+  if (level < 100) {
+    return "very-dissatisfied";
+  }
+  if (level < 200) {
+    return "somewhat-dissatisfied";
+  }
+  if (level < 300) {
+    return "neither";
+  }
+  if (level < 400) {
+    return "somewhat-satisfied";
+  }
+  return "very-satisfied";
+};
 
-  const secondsRef = React.useRef(seconds);
+const isSameRange = (prev, next) => {
+  return setSatisfactionClass(prev.level) === setSatisfactionClass(next.level);
+};
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      console.log(seconds);
-      setSeconds(seconds + 1);
-      secondsRef.current = seconds + 1;
-    }, 1000);
+export const FaceComponent = React.memo(props => {
 
-    setTimeout(() => {
-      setMessage(`Total seconds: ${secondsRef.current}`);
-    }, 2000);
-  }, []); // Important right click and ignore linter rule (later on check what happens)
+  const { level } = props;
+
+  console.log("Rerendering...");
 
   return (
-    <>
-      <h3>{message}</h3>
-      <h4>{seconds}</h4>
-    </>
+    <div className={setSatisfactionClass(level)}/>
   );
-};
+}, isSameRange); //De esta forma solo renderiza cuando hay un cambio en la clase de nivel de satisfación
