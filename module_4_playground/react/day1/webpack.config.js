@@ -8,6 +8,12 @@ var basePath = __dirname;
 module.exports = {
     context: path.join(basePath, "src"),
     resolve: {
+        alias: {
+            // Later on we will add more aliases here
+            layouts: path.resolve(__dirname, './src/layouts/'),
+            scenes: path.resolve(__dirname, './src/scenes/'),
+            core: path.resolve(__dirname, './src/core/'),
+        },
         extensions: [".js", ".ts", ".tsx"]
     },
     entry: ["./index.tsx"],

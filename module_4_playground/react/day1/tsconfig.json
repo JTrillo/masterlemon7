@@ -12,6 +12,12 @@
     "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "baseUrl": "./src/"
-  }
+    "baseUrl": "./src/",
+    "paths": {
+      "layouts": ["layouts"],
+      "scenes": ["scenes"],
+      "core": ["core"]
+    }   
+  },
+  "include": ["./src/**/*"]
 }
