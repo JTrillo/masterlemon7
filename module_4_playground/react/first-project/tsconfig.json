@@ -17,7 +17,8 @@
       "layouts": ["layouts"],
       "scenes": ["scenes"],
       "core": ["core"],
-      "pods": ["pods"]
+      "pods": ["pods"],
+      "common": ["common"]
     }   
   },
   "include": ["./src/**/*"]
