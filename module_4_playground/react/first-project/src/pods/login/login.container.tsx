@@ -8,14 +8,15 @@ import { validateCredentials } from './login.api';
 export const LoginContainer = () => {
   const history = useHistory();
   const [initialLogin] = React.useState<LoginEntityVm>(createEmptyLogin());
+  const [badLogin, setBadLogin] = React.useState(false);
 
   const handleLogin = (loginInfo: LoginEntityVm) => {
     validateCredentials(loginInfo.login, loginInfo.password).then(
       areValidCredentials => {
-        areValidCredentials ? history.push(linkRoutes.hotelCollection) : alert('invalid credentials, use admin/test, excercise: display a mui snackbar instead of this alert.');
+        areValidCredentials ? history.push(linkRoutes.hotelCollection) : setBadLogin(true);
       }
     );
   }
 
-  return <LoginComponent onLogin={handleLogin} initialLogin={initialLogin}/>;
+  return <LoginComponent onLogin={handleLogin} initialLogin={initialLogin} badLogin={badLogin} setBadLogin={setBadLogin}/>;
 };

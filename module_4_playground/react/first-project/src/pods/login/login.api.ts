@@ -4,5 +4,5 @@ export const validateCredentials = (
     password: string
 ): Promise<boolean> =>
     new Promise<boolean>(resolve =>
-      setTimeout(() => resolve(user === "admin" && password === "test"), 500)
+      setTimeout(() => resolve(user === "12345678A" && password === "password"), 500)
 );
