@@ -39,39 +39,64 @@ export const HotelCard: React.FunctionComponent<Props> = props => {
   const { hotel } = props;
 	const classes = useStyles(props);
 
-	//TO DO: Componetize the card
   return (
     <Card className={classes.card}>
-      <CardHeader
-        avatar={<Avatar aria-label="Hotel">{hotel.rating}</Avatar>}
-        action={
-          <IconButton>
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={hotel.name}
-        subheader={hotel.address}
-      />
-      <CardContent>
-        <div className={classes.cardContentDiv} >
-          <CardMedia
-            image={hotel.picture}
-            title={hotel.name}
-            className={classes.cardMedia}
-          />
-          <Typography variant="subtitle1" gutterBottom>
-            {hotel.description}
-          </Typography>
-        </div>
-      </CardContent>
-      <CardActions>
-        <IconButton aria-label="Add to favorites">
-          <EditIcon />
-        </IconButton>
-        <IconButton aria-label="Share">
-          <DeleteIcon />
-        </IconButton>
-      </CardActions>
+      <HotelCardHeader hotel={hotel}/>
+      <HotelCardContent hotel={hotel} />
+      <HotelCardActions hotel={hotel} />
     </Card>
+  );
+};
+
+const HotelCardHeader: React.FunctionComponent<Props> = props => {
+  const { hotel } = props;
+  
+  return(
+    <CardHeader
+      avatar={<Avatar aria-label="Hotel">{hotel.rating}</Avatar>}
+      action={
+        <IconButton>
+          <MoreVertIcon />
+        </IconButton>
+      }
+      title={hotel.name}
+      subheader={hotel.address}
+    />
+  );
+};
+
+const HotelCardContent: React.FunctionComponent<Props> = props => {
+  const { hotel } = props;
+  const classes = useStyles(props);
+  
+  return(
+    <CardContent>
+      <div className={classes.cardContentDiv} >
+        <CardMedia
+          image={hotel.picture}
+          title={hotel.name}
+          className={classes.cardMedia}
+        />
+        <Typography variant="subtitle1" gutterBottom>
+          {hotel.description}
+        </Typography>
+      </div>
+    </CardContent>
+  );
+};
+
+const HotelCardActions: React.FunctionComponent<Props> = props => {
+  const { hotel } = props;
+  const classes = useStyles(props);
+  
+  return(
+    <CardActions>
+      <IconButton aria-label="Add to favorites">
+        <EditIcon />
+      </IconButton>
+      <IconButton aria-label="Share">
+        <DeleteIcon />
+      </IconButton>
+    </CardActions>
   );
 };
