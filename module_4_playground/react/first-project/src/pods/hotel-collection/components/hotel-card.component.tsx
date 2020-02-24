@@ -33,22 +33,23 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface Props {
   hotel: HotelEntityVm;
+  editHotel: (hotelId: string) => void;
 }
 
 export const HotelCard: React.FunctionComponent<Props> = props => {
-  const { hotel } = props;
+  const { hotel, editHotel } = props;
 	const classes = useStyles(props);
 
   return (
     <Card className={classes.card}>
       <HotelCardHeader hotel={hotel}/>
       <HotelCardContent hotel={hotel} />
-      <HotelCardActions hotel={hotel} />
+      <HotelCardActions hotel={hotel} editHotel={editHotel}/>
     </Card>
   );
 };
 
-const HotelCardHeader: React.FunctionComponent<Props> = props => {
+const HotelCardHeader: React.FunctionComponent<Omit<Props, 'editHotel'>> = props => {
   const { hotel } = props;
   
   return(
@@ -65,7 +66,7 @@ const HotelCardHeader: React.FunctionComponent<Props> = props => {
   );
 };
 
-const HotelCardContent: React.FunctionComponent<Props> = props => {
+const HotelCardContent: React.FunctionComponent<Omit<Props, 'editHotel'>> = props => {
   const { hotel } = props;
   const classes = useStyles(props);
   
@@ -86,12 +87,12 @@ const HotelCardContent: React.FunctionComponent<Props> = props => {
 };
 
 const HotelCardActions: React.FunctionComponent<Props> = props => {
-  const { hotel } = props;
-  const classes = useStyles(props);
+  const { hotel, editHotel } = props;
+  //const classes = useStyles(props);
   
   return(
     <CardActions>
-      <IconButton aria-label="Add to favorites">
+      <IconButton aria-label="Add to favorites" onClick={() => editHotel(hotel.id)}>
         <EditIcon />
       </IconButton>
       <IconButton aria-label="Share">

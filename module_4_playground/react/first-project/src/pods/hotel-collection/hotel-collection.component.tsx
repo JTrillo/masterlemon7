@@ -20,11 +20,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-  hotelCollection: HotelEntityVm[]
+  hotelCollection: HotelEntityVm[];
+  editHotel: (hotelId: string) => void;
 }
 
 export const HotelCollectionComponent: React.FunctionComponent<Props> = props => {
-	const { hotelCollection } = props;
+	const { hotelCollection, editHotel } = props;
 	const classes = useStyles(props);
 	const { promiseInProgress } = usePromiseTracker();
 
@@ -37,7 +38,7 @@ export const HotelCollectionComponent: React.FunctionComponent<Props> = props =>
 				</div> :
 				<div className={classes.listLayout}>
 					{hotelCollection.map(hotel => (
-						<HotelCard key={hotel.id} hotel={hotel} />
+						<HotelCard key={hotel.id} hotel={hotel} editHotel={editHotel} />
 					))}
 				</div>
 			}
