@@ -12,8 +12,8 @@ import CardHeader from "@material-ui/core/CardHeader";
 import GitHubIcon from '@material-ui/icons/GitHub';
 import IconButton from '@material-ui/core/IconButton';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { UserEntity, createDefaultUserEntity } from "../../model/user";
-import { memberAPI } from "../../api/memberAPI";
+import { UserEntity, createDefaultUserEntity } from "../../model";
+import { userAPI } from "../../api";
 import { linkRoutes } from "../../core";
 import { MemberCardTable } from "./memberCardTable";
 
@@ -47,7 +47,7 @@ const useMember = () => {
 
   React.useEffect(() => {
     trackPromise(
-      memberAPI.getMember(login)
+      userAPI.getUser(login)
       .then(member => setMember(member))
       .catch(() => setMember(createDefaultUserEntity()))
     )

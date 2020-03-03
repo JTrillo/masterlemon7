@@ -2,10 +2,9 @@ import * as React from 'react';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Link from '@material-ui/core/Link';
-import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import { linkRoutes } from "../../core";
-import { MemberEntity } from '../../model/member';
+import { MemberEntity } from '../../model';
 
 export const MemberRow = (props: {member : MemberEntity}) => {
   const history = useHistory();
