@@ -74,6 +74,10 @@ export class GameStockService {
   }
 
   getGameSellers(game: string): Seller[] {
-    return this.getGame(name).sellers || null;
+    return this.getGame(game).sellers || null;
+  }
+
+  addGame(game: Game) {
+    games.push(game);
   }
 }
