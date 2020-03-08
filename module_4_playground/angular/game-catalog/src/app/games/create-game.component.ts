@@ -1,4 +1,6 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
+import { GameStockService } from "../services/game-stock.service";
+import { Game } from '../models/game.model';
 
 @Component({
   selector: 'app-create-game',
@@ -12,13 +14,15 @@ export class CreateGameComponent {
   imageurl: string;
   daterelease: string;
   mouseover: boolean;
-  @Output() createGameEvent: EventEmitter<any> = new EventEmitter<any>();
+
+  constructor(private gameStockService: GameStockService) {}
 
   createGame(formValues: any){
-    //console.log(formValues);
-    this.createGameEvent.emit(formValues);
-    this.name = "";
-    this.imageurl = "";
-    this.daterelease = "";
+    const game = this.map(formValues);
+    this.gameStockService.addGame(game);
+  }
+
+  private map(formValues: any): Game {
+    return new Game(formValues.name, formValues.daterelease, formValues.imageurl);
   }
 }

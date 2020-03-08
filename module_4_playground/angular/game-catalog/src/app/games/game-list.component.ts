@@ -16,12 +16,6 @@ export class GameListComponent implements OnInit {
 
   constructor(private gameStockService: GameStockService) {}
 
-  gameChangeHandler($event: any) {
-    this.sellers = this.gameStockService.getGameSellers($event);
-    const game = this.gameStockService.getGame($event);
-    this.selectedGameInfo = `${game.name}, Age: ${game.getYearsFromRelease()}`;
-  }
-
   ngOnInit() {
     this.games = this.gameStockService.getGames();
   }

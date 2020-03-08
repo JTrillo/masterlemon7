@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col">
+    <h3>Create Seller</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <form [formGroup]="newSellerForm" (ngSubmit)="saveSeller(newSellerForm.value)">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <em *ngIf="name.invalid && name.dirty && name?.errors.required"
+            [ngClass]="{ 'error': name.invalid && name.dirty && name?.errors.required }"
+            class="float-right">
+          Required
+        </em>
+        <em *ngIf="name.invalid && name.dirty && name?.errors.nameValid"
+            [ngClass]="{ 'error': name.invalid && name.dirty && name?.errors.nameValid }"
+            class="float-right">
+          Not start by capital letter
+        </em>
+        <input type="text" formControlName="name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="sellercategory">Category</label>
+        <em *ngIf="category.invalid && category.dirty"
+            [ngClass]="{ 'error': category.invalid && category.dirty }"
+            class="float-right">
+          Required
+        </em>
+        <select formControlName="category" (change)="onChangeCategory($event.target.value)" class="form-control">
+          <option value="">select category...</option>
+          <option *ngFor="let categoryLookup of categoryLookupCollection" [value]="categoryLookup.id">
+            {{ categoryLookup.name }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tax">Tax</label>
+        <em *ngIf="tax.invalid && tax.dirty"
+            [ngClass]="{ 'error': tax.invalid && tax.dirty }"
+            class="float-right">
+          Required
+        </em>
+        <select formControlName="tax" class="form-control">
+          <option value="">select tax...</option>
+          <option *ngFor="let taxLookup of taxLookupCollection" [value]="taxLookup.id">
+            {{ taxLookup.name }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="remarks">Remarks:</label>
+        <em *ngIf="remarks.invalid && remarks.dirty && remarks?.errors.required"
+            [ngClass]="{ 'error': remarks.invalid && remarks.dirty && remarks?.errors.required }"
+            class="float-right">
+          Required
+        </em>
+        <em *ngIf="remarks.invalid && remarks.dirty && remarks?.errors.wordsValid"
+            [ngClass]="{ 'error': remarks.invalid && remarks.dirty && remarks?.errors.wordsValid }"
+            class="float-right">
+          Using invalid words
+        </em>
+        <textarea formControlName="remarks" rows=3 class="form-control" placeholder="remarks..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-default">Cancel</button>
+    </form>
+  </div>
+</div>
