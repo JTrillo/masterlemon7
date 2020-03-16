@@ -8,11 +8,16 @@ import {
   MembersTableComponent
 } from './members-table';
 
+/*NgRx*/
+import { StoreModule } from "@ngrx/store";
+import { reducer } from './state/members.reducer';
+
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
+    StoreModule.forFeature('members', reducer),
   ],
   declarations: [
     MemberRowComponent,

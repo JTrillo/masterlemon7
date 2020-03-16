@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 
 import { MembersModule } from './members/members.module';
 
+/*NgRx*/
+import { StoreModule } from "@ngrx/store";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,6 +15,7 @@ import { MembersModule } from './members/members.module';
   imports: [
     BrowserModule,
     MembersModule,
+    StoreModule.forRoot({}),
   ],
   providers: [],
   bootstrap: [AppComponent]

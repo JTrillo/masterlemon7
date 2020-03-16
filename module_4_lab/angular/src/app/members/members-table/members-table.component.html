@@ -1,5 +1,5 @@
 <h2>Members Page</h2>
-<input type="text" name="organization" [(ngModel)]="organization" />
+<input type="text" [ngModel]="organization" (ngModelChange)="updateOrganization($event)" />
 <button (click)="loadMembers()">Load</button>
 <table>
   <thead app-member-head></thead>
