@@ -1,1 +1,1 @@
-export { default as RecipeListPage } from './Page.vue';
+export { default as RecipeListPageContainer } from './PageContainer.vue';

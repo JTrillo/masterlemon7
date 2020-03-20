@@ -8,6 +8,7 @@
         <v-card-text>
           <form-component
             :login="login"
+            :login-error="loginError"
             :update-login="updateLogin"
             :login-request="loginRequest"
           />
@@ -18,17 +19,18 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue';
-import { Login } from './viewModel';
+import Vue from 'vue';
+import { FormProps } from './formProps';
 import { FormComponent } from './components';
 
 export default Vue.extend({
   name: 'LoginPage',
   components: { FormComponent },
   props: {
-    login: {} as PropOptions<Login>,
-    updateLogin: {} as PropOptions<(name: string, password: string) => void>,
-    loginRequest: {} as PropOptions<() => void>,
-  },
+    login: {},
+    loginError: {},
+    updateLogin: {},
+    loginRequest: {},
+  } as FormProps,
 });
 </script>
