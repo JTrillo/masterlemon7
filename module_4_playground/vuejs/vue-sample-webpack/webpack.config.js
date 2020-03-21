@@ -19,7 +19,7 @@ module.exports = (env, argv) => {
     },
     entry: {
       app: './main.ts',
-      vendor: ['vue', 'vuetify', 'vue-router', 'lc-form-validation'],
+      vendor: ['vue', 'vuetify', 'vue-router', 'lc-form-validation', 'vuex'],
       vendorStyles: ['../node_modules/vuetify/dist/vuetify.min.css'],
     },
     output: {

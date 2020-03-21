@@ -46,11 +46,20 @@ export default Vue.extend({
         .then(formValidationResult => {
           if(formValidationResult.succeeded){
             const loginModel = mapLoginVmToModel(this.login);
+
+            //Forma de ejecutar una mutation en vuex
+            this.$store.commit('setLoading', { loading: true });
+
             loginRequest(loginModel)
               .then(() => {
                 this.$router.push("/recipe");
+                
+                this.$store.commit('setLoading', { loading: false });
               })
-              .catch(error => console.log(error));
+              .catch(error => {
+                console.log(error);
+                this.$store.commit('setLoading', { loading: false });
+              });
           }else{
             this.loginError = {
               ...this.loginError,

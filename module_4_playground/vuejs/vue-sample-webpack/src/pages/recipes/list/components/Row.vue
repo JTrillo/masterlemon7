@@ -7,7 +7,7 @@
       <span>{{ recipe.description }}</span>
     </td>
     <td :class="$style.editButton">
-      <v-btn flat icon>
+      <v-btn flat icon :to="`recipe/${recipe.id}`">
         <v-icon>edit</v-icon>
       </v-btn>
     </td>
