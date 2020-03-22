@@ -1,52 +1,79 @@
 <template>
   <div>
     <h2>Member Page</h2>
-    <input v-model="organization" />
-    <button @click="loadMembers">Load</button>
-    <table :class="$style.table">
-      <thead>
-        <member-head/>
-      </thead>
-      <tbody>
-        <template v-for="member in members">
-          <member-row :key="member.id" :member="member"/>
-        </template>
-      </tbody>
-    </table>
+    <v-text-field
+      label="Organization"
+      v-model="organization"
+    />
+    <v-btn @click="loadMembers">Load</v-btn>
+
+    <search-bar-component v-bind="{ searchText, onSearch, disableBar }" />
+
+    <v-data-table
+      :headers="headers"
+      :items="filteredMembers"
+      :items-per-page="5"
+      class="elevation-1"
+    >
+      <template v-slot:items="props">
+        <td>
+          <v-img :src="props.item.avatar_url" :class="$style.image" />
+        </td>
+        <td>{{ props.item.id }}</td>
+        <td>
+          {{ props.item.login }}
+          <v-btn flat icon :to="`member/${props.item.login}`">
+            <v-icon>search</v-icon>
+          </v-btn>
+        </td>
+      </template>
+    </v-data-table>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import MemberHead from "./Head.vue";
-import MemberRow from "./Row.vue";
+import { SearchBarComponent } from "./components";
 import { Member } from "../../model/member";
 import { getAllMembers } from "../../api/memberAPI";
+import { filterMembersByCommaSeparatedText } from "./business/filterMemberBusiness";
 
 export default Vue.extend({
   name: "MemberTable",
-  components: { MemberHead, MemberRow },
+  components: { SearchBarComponent },
   data: () => ({
     members: [] as Member[],
     organization: "lemoncode",
+    headers: [
+      { text: 'Avatar', value: 'avatar_url', sortable: false },
+      { text: 'Id', value: 'id', sortable: false },
+      { text: 'Name', value: 'login', sortable: false },
+    ],
+    searchText: '',
   }),
+  computed: {
+    filteredMembers(): Member[] {
+      return filterMembersByCommaSeparatedText(this.members, this.searchText);
+    },
+    disableBar(): boolean {
+      return this.members.length === 0 ? true : false;
+    }
+  },
   methods: {
     loadMembers: function() {
       getAllMembers(this.organization).then(members => {
         this.members = members;
       });
-    }
-  }
+    },
+    onSearch(value: string) {
+      this.searchText = value;
+    },
+  },
 });
 </script>
 
 <style module>
-.table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.table tbody tr:nth-of-type(odd) {
-  background-color: rgba(0, 0, 0, 0.05);
+.image {
+  max-width: 10rem;
 }
 </style>
