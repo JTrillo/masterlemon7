@@ -1,5 +1,8 @@
 <template>
-  <card-component :user="user" />
+  <card-component
+    :user="user"
+    :go-back="goBack"
+  />
 </template>
 
 <script lang="ts">
@@ -10,9 +13,9 @@ import { User } from "../../model/user";
 export default Vue.extend({
   name: 'MemberCardPage',
   components: { CardComponent },
-  props: { user: {} as PropOptions<User> },
-  created() {
-    console.log(this.user);
-  }
+  props: {
+    user: {} as PropOptions<User>,
+    goBack: {} as PropOptions<() => void>,
+  },
 });
 </script>

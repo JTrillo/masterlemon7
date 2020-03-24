@@ -42,7 +42,7 @@ export default Vue.extend({
   name: "MemberTable",
   components: { SearchBarComponent },
   data: () => ({
-    members: [] as Member[],
+    //members: [] as Member[],
     organization: "lemoncode",
     headers: [
       { text: 'Avatar', value: 'avatar_url', sortable: false },
@@ -52,6 +52,9 @@ export default Vue.extend({
     searchText: '',
   }),
   computed: {
+    members(): Member[] {
+      return this.$store.state.members;
+    },
     filteredMembers(): Member[] {
       return filterMembersByCommaSeparatedText(this.members, this.searchText);
     },
@@ -60,10 +63,11 @@ export default Vue.extend({
     }
   },
   methods: {
-    loadMembers: function() {
-      getAllMembers(this.organization).then(members => {
+    loadMembers: async function() {
+      this.$store.dispatch('getAllMembers', { organization: this.organization })
+      /*getAllMembers(this.organization).then(members => {
         this.members = members;
-      });
+      });*/
     },
     onSearch(value: string) {
       this.searchText = value;

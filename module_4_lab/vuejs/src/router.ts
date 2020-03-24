@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router, { RouteConfig } from 'vue-router';
-import { MemberTable } from './components';
+import { MemberTable } from './components/memberTable';
 import { MemberCardPageContainer } from './components/memberCard';
 
 const routes: RouteConfig[] = [

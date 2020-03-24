@@ -1,6 +1,7 @@
 <template>
   <member-card-page
     :user="user"
+    :go-back="goBack"
   />
 </template>
 
@@ -20,12 +21,19 @@ export default Vue.extend({
     };
   },
   beforeMount() {
-    const id = String(this.login || 'brauliodiez');
-    getUser(id)
+    const userLogin = String(this.login || 'brauliodiez');
+    this.$store.commit('setLoading', { loading: true });
+    getUser(userLogin)
       .then(user => {
         this.user = user;
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error))
+      .finally(() => this.$store.commit('setLoading', { loading: false }));
   },
+  methods: {
+    goBack(){
+      this.$router.back();
+    }
+  }
 });
 </script>
