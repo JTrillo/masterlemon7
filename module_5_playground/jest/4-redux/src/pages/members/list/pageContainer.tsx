@@ -1,38 +1,21 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import { State } from '../../reducers';
-import { MembersAction } from './actions';
+import { useSelector, useDispatch } from 'react-redux';
 import { fetchMembersRequest } from './actions/fetchMembers';
-import { mapMemberListModelToVM } from './mappers';
+import { getMembersListVM, getServerError } from "./selectors";
 import { MemberListPage } from './page';
-import { Member } from './viewModel';
 
-const mapStateToProps = (state: State) => ({
-  members: mapMemberListModelToVM(state.members.members),
-  serverError: state.members.serverError,
-});
+const useFetchMembers = () => {
+  const dispatch = useDispatch();
+  return React.useCallback(() => {
+    dispatch(fetchMembersRequest())
+  }, []);
+};
 
-const mapDispatchToProps = (dispatch: Dispatch<MembersAction>) => ({
-  fetchMembers: () => {
-    dispatch(fetchMembersRequest());
-  },
-});
-
-interface Props {
-  members: Member[];
-  serverError: string | null;
-  fetchMembers: () => void;
-}
-
-const PageContainer: React.FunctionComponent<Props> = React.memo((props) => {
-  const { members, serverError, fetchMembers } = props;
+export const MemberListPageContainer: React.FunctionComponent = React.memo(() => {
+  const members = useSelector(getMembersListVM);
+  const serverError = useSelector(getServerError);
+  const fetchMembers = useFetchMembers();
   React.useEffect(fetchMembers, []);
 
   return <MemberListPage members={members} serverError={serverError} />;
 });
-
-export const MemberListPageContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PageContainer);

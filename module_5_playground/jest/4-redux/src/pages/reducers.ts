@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 import { membersReducer, MembersState } from './members';
 
 export interface State {
-  members: MembersState;
+  membersState: MembersState;
 }
 
 export const reducers = combineReducers<State>({
-  members: membersReducer,
+  membersState: membersReducer,
 });

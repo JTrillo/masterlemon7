@@ -8,7 +8,9 @@
     "prebuild": "rimraf dist",
     "build": "webpack --config ./config/webpack/prod.js",
     "test": "jest -c ./config/test/jest.json --verbose",
-    "test:watch": "npm run test -- --watchAll -i"
+    "test:watch": "npm run test -- --watchAll -i",
+    "pretest:coverage": "rimraf coverage",
+    "test:coverage": "jest -c ./config/test/jest.coverage.json --verbose"
   },
   "author": "Lemoncode",
   "repository": "https://github.com/Lemoncode/react-testing-by-example",
@@ -23,7 +25,8 @@
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
-    "redux-saga": "^1.1.3"
+    "redux-saga": "^1.1.3",
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
