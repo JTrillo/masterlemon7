@@ -3,7 +3,7 @@ const columns = ['car_id', 'name', 'brand', 'year_release'];
 const populateCell = (cell, text) => {
     const cellText = document.createTextNode(text)
     cell.appendChild(cellText);
-}
+};
 
 const addCarRow = (car, tableId) => {
     const table = document.getElementById(tableId).getElementsByTagName('tbody')[0];
@@ -13,11 +13,11 @@ const addCarRow = (car, tableId) => {
         const text = car[columns[index]];
         populateCell(c, text);
     })
-}
+};
 
 export const addCarRows = (cars, tableId) => {
     cars.forEach((c) => addCarRow(c, tableId));
-}
+};
 
 export const cleanTable = (tableId) => {
     const table = document
@@ -28,18 +28,18 @@ export const cleanTable = (tableId) => {
             table.deleteRow(index);
         }
     }
-}
+};
 
 export const populateEditCarForm = ({ name, brand, year_release }) => {
-    document.getElementById('name').value = name;
-    document.getElementById('brand').value = brand;
-    document.getElementById('year').value = year_release;
-}
+    (document.getElementById('name') as HTMLInputElement).value = name;
+    (document.getElementById('brand') as HTMLInputElement).value = brand;
+    (document.getElementById('year') as HTMLInputElement).value = year_release;
+};
 
 export const retrieveCarForm = () => {
-    const name = document.getElementById('name').value;
-    const brand = document.getElementById('brand').value;
-    const year_release = document.getElementById('year').value;
+    const name = (document.getElementById('name') as HTMLInputElement).value;
+    const brand = (document.getElementById('brand') as HTMLInputElement).value;
+    const year_release = (document.getElementById('year') as HTMLInputElement).value;
     return {
         name,
         brand,
@@ -48,14 +48,5 @@ export const retrieveCarForm = () => {
 };
 
 export const retrieveCarId = () => {
-    return +document.getElementById('carid').value;
-}
-
-export const retrieveLoginForm = () => {
-    const username = document.getElementById('user').value;
-    const password = document.getElementById('password').value;
-    return {
-        username,
-        password,
-    };
+    return +(document.getElementById('carid') as HTMLInputElement).value;
 };
