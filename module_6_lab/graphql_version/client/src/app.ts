@@ -5,7 +5,7 @@ import {
   retrieveCarForm,
   cleanTable,
 } from './uiHelpers';
-import { getCars, getCar, addCar } from "./api/carsApi";
+import { getCars, getCar, addCar, editCar } from "./api/carsApi";
 
 document.addEventListener('DOMContentLoaded', () => {
   const buttonLoadCars = document.getElementById('loadcars');
@@ -39,6 +39,26 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .then((result) => {
         addCarRows(result, 'cars-table');
+      });
+  });
+
+  const buttonEditCar = document.getElementById('edit');
+  buttonEditCar.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const carId = retrieveCarId();
+    const car = retrieveCarForm();
+    editCar({
+      car_id: carId,
+      name: car.name,
+      brand: car.brand,
+      year_release: car.year_release
+    })
+      .then((_) => {
+          cleanTable('cars-table');
+          return getCars();
+      })
+      .then((result) => {
+          addCarRows(result, 'cars-table');
       });
   });
 });

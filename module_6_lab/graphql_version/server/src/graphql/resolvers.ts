@@ -1,4 +1,4 @@
-import { getCarList, getCar, addCar } from "../data";
+import { getCarList, getCar, addCar, editCar } from "../data";
 
 export const resolvers = {
   Query: {
@@ -14,6 +14,10 @@ export const resolvers = {
   Mutation: {
     addCar: async(parent, args) => {
       await addCar(args.carCreate);
+      return true;
+    },
+    editCar: async(parent, args) => {
+      await editCar(args.editCar);
       return true;
     }
   }

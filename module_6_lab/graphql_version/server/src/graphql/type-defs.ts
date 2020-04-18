@@ -19,7 +19,15 @@ export const typeDefs = gql`
     year_release: String!
   }
 
+  input EditCar {
+    car_id: Int!
+    name: String!
+    brand: String!
+    year_release: String!
+  }
+
   type Mutation {
     addCar(carCreate: CarCreate!): Boolean
+    editCar(editCar: EditCar!): Boolean
   }
 `;

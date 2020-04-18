@@ -22,7 +22,22 @@ export const addCar = async (carCreate: CarCreate): Promise<boolean> => {
   cars.push(car);
   
   return true;
-}
+};
+
+export const editCar = async (editCar: Car): Promise<boolean> => {
+  const { car_id, name, brand, year_release } = editCar;
+  const index = cars.findIndex(c => c.car_id === car_id);
+  if(index !== -1){
+    cars[index] = {
+      car_id,
+      name,
+      brand,
+      year_release
+    };
+    return true;
+  }
+  return false;
+};
 
 const getNextAvailableId = (): number => {
   return cars[cars.length-1].car_id+1;

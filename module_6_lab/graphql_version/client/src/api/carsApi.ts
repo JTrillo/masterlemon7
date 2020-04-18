@@ -62,5 +62,25 @@ export const addCar = (car: CarCreateApi): Promise<boolean> => {
     .request<AddCarResponse>(mutation, {
       carCreate: car
     })
-    .then(res => res.addCar);
+    .then(res => res.addCar)
+    .catch(() => false);
 };
+
+interface EditCarResponse {
+  editCar: boolean;
+}
+
+export const editCar = (car: CarEntityApi): Promise<boolean> => {
+  const mutation = `
+    mutation($editCar: EditCar!) {
+      editCar(editCar: $editCar)
+    }
+  `;
+
+  return graphQLClient
+    .request<EditCarResponse>(mutation, {
+      editCar: car
+    })
+    .then(res => res.editCar)
+    .catch(() => false);
+}
