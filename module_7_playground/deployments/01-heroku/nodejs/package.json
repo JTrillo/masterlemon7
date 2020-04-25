@@ -1,0 +1,13 @@
+{
+  "name": "nodejs",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "10.3.0"
+  },
+  "dependencies": {
+    "express": "*"
+  }
+}

@@ -1,0 +1,25 @@
+---
+# Installing Flask Application
+
+- name: Installing Flask
+  gather_facts: false
+  hosts: web
+  become: yes
+  tasks:
+    - name: Installing dependencies
+      apt:
+        name: [python-pip]
+        state: present
+        update_cache: yes
+    
+    - name: Copying code
+      copy:
+        src: ../code
+        dest: /opt
+        force: yes
+
+    - name: Installing project dependencies
+      command: pip install -r /opt/code/requirements.txt
+
+    - name: Run command
+      shell: nohup python /opt/code/app.py &
